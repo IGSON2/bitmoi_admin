@@ -1,31 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, CardBody, Col, Container, Input, Modal, ModalHeader, Row, ModalBody, CardTitle, InputGroup, Nav, NavItem, NavLink } from 'reactstrap';
-import Activity from './Activity';
-import MonthlyEarning from './MonthlyEarning';
-import SocialSource from './SocialSource';
-import TopCities from './TopCities';
-import WelComeback from './WelComeback';
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Container,
+  Input,
+  Modal,
+  ModalHeader,
+  Row,
+  ModalBody,
+  CardTitle,
+  InputGroup,
+  Nav,
+  NavItem,
+  NavLink,
+} from "reactstrap";
+import Activity from "./Activity";
+import MonthlyEarning from "./MonthlyEarning";
+import SocialSource from "./SocialSource";
+import TopCities from "./TopCities";
+import WelComeback from "./WelComeback";
 import LatestTransaction from "./LatestTransaction";
 import classNames from "classnames";
 
 import StackedColumnChart from "./StackedColumnChart";
 import { useSelector, useDispatch } from "react-redux";
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 
-import { getChartData as onGetChartData } from '../../slices/dashboards/thunk';
+import { getChartData as onGetChartData } from "../../slices/dashboards/thunk";
 
-import Breadcrumb from 'Components/Common/Breadcrumb';
-import { DashboardEmailItem, Report } from './type';
+import Breadcrumb from "Components/Common/Breadcrumb";
+import { DashboardEmailItem, Report } from "./type";
 
 interface selectState {
   dashboard: {
     dashboardChartData: DashboardEmailItem[];
     loading: boolean;
   };
-};
+}
 
 const Dashboard = () => {
-
   document.title = "Dashboards | Skote - React Admin & Dashboard Template";
 
   const [subScribeModal, setSubScribeModal] = useState<boolean>(false);
@@ -33,7 +48,11 @@ const Dashboard = () => {
   const reports: Report[] = [
     { title: "Orders", iconClass: "bx-copy-alt", description: "1,235" },
     { title: "Revenue", iconClass: "bx-archive-in", description: "$35, 723" },
-    { title: "Average Price", iconClass: "bx-purchase-tag-alt", description: "$16.2" },
+    {
+      title: "Average Price",
+      iconClass: "bx-purchase-tag-alt",
+      description: "$16.2",
+    },
   ];
 
   useEffect(() => {
@@ -48,7 +67,7 @@ const Dashboard = () => {
   const selectProperties = createSelector(
     (state: selectState) => state.dashboard,
     (dashboard) => ({
-      chartsData: dashboard.dashboardChartData
+      chartsData: dashboard.dashboardChartData,
     })
   );
 
@@ -86,12 +105,19 @@ const Dashboard = () => {
                       <CardBody>
                         <div className="d-flex">
                           <div className="flex-grow-1">
-                            <p className="text-muted fw-medium"> {report.title} </p>
+                            <p className="text-muted fw-medium">
+                              {" "}
+                              {report.title}{" "}
+                            </p>
                             <h4 className="mb-0">{report.description}</h4>
                           </div>
                           <div className="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                             <span className="avatar-title rounded-circle bg-primary">
-                              <i className={"bx " + report.iconClass + " font-size-24"} ></i>
+                              <i
+                                className={
+                                  "bx " + report.iconClass + " font-size-24"
+                                }
+                              ></i>
                             </span>
                           </div>
                         </div>
@@ -104,34 +130,65 @@ const Dashboard = () => {
               <Card>
                 <CardBody>
                   <div className="d-sm-flex flex-wrap">
-                    <CardTitle tag="h4" className="mb-4">Email Sent</CardTitle>
+                    <CardTitle tag="h4" className="mb-4">
+                      Email Sent
+                    </CardTitle>
                     <div className="ms-auto">
                       <Nav pills>
                         <NavItem>
-                          <NavLink href="#" className={classNames({ active: periodType === "Week" }, "nav-link")}
+                          <NavLink
+                            href="#"
+                            className={classNames(
+                              { active: periodType === "Week" },
+                              "nav-link"
+                            )}
                             onClick={() => {
                               onChangeChartPeriod("Week");
                             }}
-                            id="one_month">Week</NavLink>
+                            id="one_month"
+                          >
+                            Week
+                          </NavLink>
                         </NavItem>
                         <NavItem>
-                          <NavLink href="#" className={classNames({ active: periodType === "Month" }, "nav-link")}
+                          <NavLink
+                            href="#"
+                            className={classNames(
+                              { active: periodType === "Month" },
+                              "nav-link"
+                            )}
                             onClick={() => {
                               onChangeChartPeriod("Month");
                             }}
-                            id="one_month" > Month </NavLink>
+                            id="one_month"
+                          >
+                            {" "}
+                            Month{" "}
+                          </NavLink>
                         </NavItem>
                         <NavItem>
-                          <NavLink href="#" className={classNames({ active: periodType === "Year" }, "nav-link")}
+                          <NavLink
+                            href="#"
+                            className={classNames(
+                              { active: periodType === "Year" },
+                              "nav-link"
+                            )}
                             onClick={() => {
                               onChangeChartPeriod("Year");
                             }}
-                            id="one_month" > Year  </NavLink>
+                            id="one_month"
+                          >
+                            {" "}
+                            Year{" "}
+                          </NavLink>
                         </NavItem>
                       </Nav>
                     </div>
                   </div>
-                  <StackedColumnChart periodData={periodData} dataColors='["--bs-primary", "--bs-warning", "--bs-success"]' />
+                  <StackedColumnChart
+                    periodData={periodData}
+                    dataColors='["--bs-primary", "--bs-warning", "--bs-success"]'
+                  />
                 </CardBody>
               </Card>
             </Col>
@@ -154,10 +211,10 @@ const Dashboard = () => {
             </Col>
           </Row>
         </Container>
-      </div >
+      </div>
 
       {/* subscribe ModalHeader */}
-      <Modal isOpen={subScribeModal} autoFocus={true} centered toggle={() => { setSubScribeModal(!subScribeModal) }}>
+      {/* <Modal isOpen={subScribeModal} autoFocus={true} centered toggle={() => { setSubScribeModal(!subScribeModal) }}>
         <div>
           <ModalHeader className="border-bottom-0" toggle={() => { setSubScribeModal(!subScribeModal) }} />
         </div>
@@ -184,10 +241,9 @@ const Dashboard = () => {
             </Row>
           </div>
         </ModalBody>
-      </Modal >
-
-    </React.Fragment >
+      </Modal > */}
+    </React.Fragment>
   );
-}
+};
 
 export default Dashboard;

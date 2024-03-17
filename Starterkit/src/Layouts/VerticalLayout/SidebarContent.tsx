@@ -122,7 +122,7 @@ const SidebarContent = (props: any) => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     activeMenu();
   }, [activeMenu]);
 
@@ -142,6 +142,53 @@ const SidebarContent = (props: any) => {
           <ul className="metismenu list-unstyled" id="side-menu">
             <li className="menu-title">{props.t("Menu")} </li>
             <li>
+              <Link to="/dashboard-users" className="has-arrow">
+                <i className="bx bx-caret-right"></i>
+                <span>{props.t("회원관리")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard-invest" className="has-arrow">
+                <i className="bx bx-caret-right"></i>
+                <span>{props.t("모의투자 관리")}</span>
+              </Link>
+              {/* <ul className="sub-menu">
+                <li>
+                  <Link to="/dashboard-invest/prac">{props.t("연습모드")}</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard-invest/comp">{props.t("경쟁모드")}</Link>
+                </li>
+              </ul> */}
+            </li>
+            <li>
+              <Link to="/dashboard-usdp" className="has-arrow">
+                <i className="bx bx-caret-right"></i>
+                <span>{props.t("USDP 관리")}</span>
+              </Link>
+              {/* <ul className="sub-menu">
+                <li>
+                  <Link to="/dashboard">{props.t("USDP (연습모드)")}</Link>
+                </li>
+                <li>
+                  <Link to="#">{props.t("USDP 지급/차감")}</Link>
+                </li>
+              </ul> */}
+            </li>
+            <li>
+              <Link to="/dashboard-token" className="has-arrow">
+                <i className="bx bx-caret-right"></i>
+                <span>{props.t("Token 관리")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard-referral" className="has-arrow">
+                <i className="bx bx-caret-right"></i>
+                <span>{props.t("레퍼럴 관리")}</span>
+              </Link>
+            </li>
+
+            {/* <li>
               <Link to="/#" className="has-arrow">
                 <i className="bx bx-home-circle"></i>
                 <span>{props.t("Dashboards")}</span>
@@ -161,7 +208,12 @@ const SidebarContent = (props: any) => {
                 </li>
                 <li>
                   <Link to="#">
-                    <span className="badge rounded-pill text-bg-success float-end" key="t-new">New</span>
+                    <span
+                      className="badge rounded-pill text-bg-success float-end"
+                      key="t-new"
+                    >
+                      New
+                    </span>
                     {props.t("Jobs")}
                   </Link>
                 </li>
@@ -171,20 +223,20 @@ const SidebarContent = (props: any) => {
             <li className="menu-title">{props.t("Apps")}</li>
 
             <li>
-              <Link to="#" >
+              <Link to="#">
                 <i className="bx bx-calendar"></i>
                 <span>{props.t("Calendar")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="#" >
+              <Link to="#">
                 <i className="bx bx-chat"></i>
                 <span>{props.t("Chat")}</span>
               </Link>
             </li>
             <li>
-              <Link to="#" >
+              <Link to="#">
                 <i className="bx bx-file"></i>
                 <span>{props.t("File Manager")}</span>
               </Link>
@@ -200,9 +252,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Products")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Product Detail")}
-                  </Link>
+                  <Link to="#">{props.t("Product Detail")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Orders")}</Link>
@@ -220,9 +270,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Shops")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Add Product")}
-                  </Link>
+                  <Link to="#">{props.t("Add Product")}</Link>
                 </li>
               </ul>
             </li>
@@ -249,9 +297,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Orders")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("KYC Application")}
-                  </Link>
+                  <Link to="#">{props.t("KYC Application")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("ICO Landing")}</Link>
@@ -277,19 +323,13 @@ const SidebarContent = (props: any) => {
                   </Link>
                   <ul className="sub-menu">
                     <li>
-                      <Link to="#">
-                        {props.t("Basic Action")}
-                      </Link>
+                      <Link to="#">{props.t("Basic Action")}</Link>
                     </li>
                     <li>
-                      <Link to="#">
-                        {props.t("Alert Email")}{" "}
-                      </Link>
+                      <Link to="#">{props.t("Alert Email")} </Link>
                     </li>
                     <li>
-                      <Link to="#">
-                        {props.t("Billing Email")}{" "}
-                      </Link>
+                      <Link to="#">{props.t("Billing Email")} </Link>
                     </li>
                   </ul>
                 </li>
@@ -324,9 +364,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Projects List")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Project Overview")}
-                  </Link>
+                  <Link to="#">{props.t("Project Overview")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Create New")}</Link>
@@ -390,21 +428,42 @@ const SidebarContent = (props: any) => {
 
             <li>
               <Link to="#">
-                <span className="badge rounded-pill bg-success float-end" key="t-new">New</span>
+                <span
+                  className="badge rounded-pill bg-success float-end"
+                  key="t-new"
+                >
+                  New
+                </span>
                 <i className="bx bx-briefcase-alt"></i>
                 <span key="t-jobs">{props.t("Jobs")}</span>
               </Link>
               <ul className="sub-menu">
-                <li><Link to="#">{props.t("Job List")}</Link></li>
-                <li><Link to="#">{props.t("Job Grid")}</Link></li>
-                <li><Link to="#">{props.t("Apply Job")}</Link></li>
-                <li><Link to="#">{props.t("Job Details")}</Link></li>
-                <li><Link to="#">{props.t("Jobs Categories")}</Link></li>
                 <li>
-                  <Link to="#" className="has-arrow">{props.t("Candidate")}</Link>
+                  <Link to="#">{props.t("Job List")}</Link>
+                </li>
+                <li>
+                  <Link to="#">{props.t("Job Grid")}</Link>
+                </li>
+                <li>
+                  <Link to="#">{props.t("Apply Job")}</Link>
+                </li>
+                <li>
+                  <Link to="#">{props.t("Job Details")}</Link>
+                </li>
+                <li>
+                  <Link to="#">{props.t("Jobs Categories")}</Link>
+                </li>
+                <li>
+                  <Link to="#" className="has-arrow">
+                    {props.t("Candidate")}
+                  </Link>
                   <ul className="sub-menu">
-                    <li><Link to="#">{props.t("List")}</Link></li>
-                    <li><Link to="#">{props.t("Overview")}</Link></li>
+                    <li>
+                      <Link to="#">{props.t("List")}</Link>
+                    </li>
+                    <li>
+                      <Link to="#">{props.t("Overview")}</Link>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -430,50 +489,34 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Register 2")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Recover Password")}
-                  </Link>
+                  <Link to="#">{props.t("Recover Password")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Recover Password 2")}
-                  </Link>
+                  <Link to="#">{props.t("Recover Password 2")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Lock Screen")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Lock Screen 2")}
-                  </Link>
+                  <Link to="#">{props.t("Lock Screen 2")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Confirm Mail")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Confirm Mail 2")}
-                  </Link>
+                  <Link to="#">{props.t("Confirm Mail 2")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Email Verification")}
-                  </Link>
+                  <Link to="#">{props.t("Email Verification")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Email Verification 2")}
-                  </Link>
+                  <Link to="#">{props.t("Email Verification 2")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Two Step Verification")}
-                  </Link>
+                  <Link to="#">{props.t("Two Step Verification")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Two Step Verification 2")}
-                  </Link>
+                  <Link to="#">{props.t("Two Step Verification 2")}</Link>
                 </li>
               </ul>
             </li>
@@ -550,28 +593,20 @@ const SidebarContent = (props: any) => {
                 </li>
 
                 <li>
-                  <Link to="#">
-                    {props.t("Range Slider")}
-                  </Link>
+                  <Link to="#">{props.t("Range Slider")}</Link>
                 </li>
 
                 <li>
-                  <Link to="#">
-                    {props.t("Progress Bars")}
-                  </Link>
+                  <Link to="#">{props.t("Progress Bars")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Placeholders")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Tabs & Accordions")}
-                  </Link>
+                  <Link to="#">{props.t("Tabs & Accordions")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Typography")}
-                  </Link>
+                  <Link to="#">{props.t("Typography")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Toasts")}</Link>
@@ -589,9 +624,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Rating")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Notifications")}
-                  </Link>
+                  <Link to="#">{props.t("Notifications")}</Link>
                 </li>
                 <li>
                   <Link to="#">
@@ -605,7 +638,7 @@ const SidebarContent = (props: any) => {
             </li>
 
             <li>
-              <Link to="#" >
+              <Link to="#">
                 <i className="bx bxs-eraser"></i>
                 <span className="badge rounded-pill bg-danger float-end">
                   10
@@ -620,9 +653,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Form Layouts")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Form Validation")}
-                  </Link>
+                  <Link to="#">{props.t("Form Validation")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Form Advanced")}</Link>
@@ -680,9 +711,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("E Chart")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Sparkline Chart")}
-                  </Link>
+                  <Link to="#">{props.t("Sparkline Chart")}</Link>
                 </li>
 
                 <li>
@@ -701,9 +730,7 @@ const SidebarContent = (props: any) => {
                   <Link to="#">{props.t("Boxicons")}</Link>
                 </li>
                 <li>
-                  <Link to="#">
-                    {props.t("Material Design")}
-                  </Link>
+                  <Link to="#">{props.t("Material Design")}</Link>
                 </li>
                 <li>
                   <Link to="#">{props.t("Dripicons")}</Link>
@@ -755,7 +782,7 @@ const SidebarContent = (props: any) => {
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
         </div>
       </SimpleBar>
