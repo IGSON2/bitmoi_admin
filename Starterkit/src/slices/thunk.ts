@@ -12,3 +12,6 @@ export * from "./auth/register/thunk";
 
 // Forget Password
 export * from "./auth/forgetpwd/thunk";
+
+//Dashboard
+export * from "./dashboards/thunk";

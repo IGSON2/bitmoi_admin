@@ -2,6 +2,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import * as url from "../url_helper";
 import { accessToken, nodeApiToken } from "../jwt-token-access/accessToken";
+import { latestTransaction } from "Components/Common/SampleData";
 
 let users = [
   {
@@ -17,10 +18,10 @@ const fakeBackend = () => {
   // This sets the mock adapter on the default instance
   const mock = new MockAdapter(axios, { onNoMatch: "passthrough" });
 
-  mock.onPost(url.POST_FAKE_LOGIN).reply(config => {
+  mock.onPost(url.POST_FAKE_LOGIN).reply((config) => {
     const user = JSON.parse(config["data"]);
     const validUser = users.filter(
-      usr => usr.email === user.email && usr.password === user.password
+      (usr) => usr.email === user.email && usr.password === user.password
     );
 
     return new Promise((resolve, reject) => {
@@ -60,7 +61,7 @@ const fakeBackend = () => {
   mock.onPost("/post-jwt-login").reply((config: any) => {
     const user = JSON.parse(config["data"]);
     const validUser = users.filter(
-      usr => usr.email === user.email && usr.password === user.password
+      (usr) => usr.email === user.email && usr.password === user.password
     );
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -90,7 +91,7 @@ const fakeBackend = () => {
 
     let finalToken = one.Authorization;
 
-    const validUser = users.filter(usr => usr.uid === user.idx);
+    const validUser = users.filter((usr) => usr.uid === user.idx);
 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -100,7 +101,7 @@ const fakeBackend = () => {
             let objIndex: any;
 
             //Find index of specific object using findIndex method.
-            objIndex = users.findIndex(obj => obj.uid === user.idx);
+            objIndex = users.findIndex((obj) => obj.uid === user.idx);
 
             //Update object's name property.
             users[objIndex].username = user.username;
@@ -123,18 +124,20 @@ const fakeBackend = () => {
   mock.onPost("/social-login").reply((config: any) => {
     const user = JSON.parse(config["data"]);
     return new Promise((resolve, reject) => {
-
       setTimeout(() => {
         if (user && user.token) {
           // You have to generate AccessToken by jwt. but this is fakeBackend so, right now its dummy
           const token = accessToken;
-          const first_name = user.name
-          const nodeapiToken = nodeApiToken
-          delete user.name
+          const first_name = user.name;
+          const nodeapiToken = nodeApiToken;
+          delete user.name;
 
           // JWT AccessToken
           const tokenObj = { accessToken: token, first_name: first_name }; // Token Obj
-          const validUserObj = { token: nodeapiToken, "data": { ...tokenObj, ...user } }; // validUser Obj
+          const validUserObj = {
+            token: nodeapiToken,
+            data: { ...tokenObj, ...user },
+          }; // validUser Obj
           resolve([200, validUserObj]);
         } else {
           reject([
@@ -156,10 +159,10 @@ const fakeBackend = () => {
     });
   });
 
-  mock.onPost(url.POST_EDIT_PROFILE).reply(config => {
+  mock.onPost(url.POST_EDIT_PROFILE).reply((config) => {
     const user = JSON.parse(config["data"]);
 
-    const validUser = users.filter(usr => usr.uid === user.idx);
+    const validUser = users.filter((usr) => usr.uid === user.idx);
 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -167,7 +170,7 @@ const fakeBackend = () => {
           let objIndex;
 
           //Find index of specific object using findIndex method.
-          objIndex = users.findIndex(obj => obj.uid === user.idx);
+          objIndex = users.findIndex((obj) => obj.uid === user.idx);
 
           //Update object's name property.
           users[objIndex].username = user.username;
@@ -184,6 +187,19 @@ const fakeBackend = () => {
     });
   });
 
+  //latest transaction
+  mock.onGet(url.GET_TRANSACTION).reply(() => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (latestTransaction) {
+          // Passing fake JSON data as response
+          resolve([200, latestTransaction]);
+        } else {
+          reject([400, "Cannot get Latest Transaction Data"]);
+        }
+      });
+    });
+  });
 };
 
 export default fakeBackend;
