@@ -3,7 +3,7 @@ import { Container } from "reactstrap";
 import Breadcrumb from "Components/Common/Breadcrumb";
 
 const DashboardToken = () => {
-  document.title = "Dashboards | Skote - React Admin & Dashboard Template";
+  document.title = "Dashboards | Bitmoi";
 
   return (
     <React.Fragment>

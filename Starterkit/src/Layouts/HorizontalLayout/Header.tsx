@@ -11,6 +11,7 @@ import ProfileMenu from "../../Components/CommonForBoth/TopBarDropDown/ProfileMe
 
 import megamenuImg from "../../assets/images/megamenu-img.png";
 import logo from "../../assets/images/logo.svg";
+import bitmoiLogo from "../../assets/images/bitmoi-logo.svg";
 import logoLight from "../../assets/images/logo-light.png";
 import logoLightSvg from "../../assets/images/logo-light.svg";
 import logoDark from "../../assets/images/logo-dark.png";
@@ -44,9 +45,10 @@ const Header = (props: any) => {
       } else if (document.documentElement.mozRequestFullScreen) {
         document.documentElement.mozRequestFullScreen();
       } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen(
+        document.documentElement
+          .webkitRequestFullscreen
           //   Element.ALLOW_KEYBOARD_INPUT
-        );
+          ();
       }
     } else {
       if (document.cancelFullScreen) {
@@ -67,19 +69,23 @@ const Header = (props: any) => {
             <div className="navbar-brand-box">
               <Link to="/" className="logo logo-dark">
                 <span className="logo-sm">
-                  <img src={logo} alt="" height="22" />
+                  {/* <img src={logo} alt="" height="22" /> */}
+                  <img src={bitmoiLogo} alt="" height="22" />
                 </span>
                 <span className="logo-lg">
-                  <img src={logoDark} alt="" height="17" />
+                  {/* <img src={logoDark} alt="" height="17" /> */}
+                  <img src={bitmoiLogo} alt="" height="17" />
                 </span>
               </Link>
 
               <Link to="/" className="logo logo-light">
                 <span className="logo-sm">
-                  <img src={logoLightSvg} alt="" height="22" />
+                  {/* <img src={logoLightSvg} alt="" height="22" /> */}
+                  <img src={bitmoiLogo} alt="" height="22" />
                 </span>
                 <span className="logo-lg">
-                  <img src={logoLight} alt="" height="19" />
+                  {/* <img src={logoLight} alt="" height="19" /> */}
+                  <img src={bitmoiLogo} alt="" height="19" />
                 </span>
               </Link>
             </div>
@@ -110,11 +116,7 @@ const Header = (props: any) => {
               isOpen={menu}
               toggle={() => setMenu(!menu)}
             >
-              <DropdownToggle
-                className="btn header-item "
-                caret
-                tag="button"
-              >
+              <DropdownToggle className="btn header-item " caret tag="button">
                 {props.t("Mega Menu")} <i className="mdi mdi-chevron-down" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-megamenu">
@@ -386,4 +388,4 @@ const Header = (props: any) => {
   );
 };
 
-export default (withTranslation()(Header));
+export default withTranslation()(Header);

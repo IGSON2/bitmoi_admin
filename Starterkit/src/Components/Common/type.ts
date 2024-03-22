@@ -1,34 +1,41 @@
 export interface Report {
-    title: string;
-    iconClass: string;
-    description: string;
+  title: string;
+  iconClass: string;
+  description: string;
 }
 
 export interface Series {
-    name: string;
-    data: number[];
+  name: string;
+  data: number[];
 }
 
 export interface DashboardEmailItem {
-    id: string;
-    Year?: Series[];
-    Month?: Series[];
-    Week?: Series[];
+  id: string;
+  Year?: Series[];
+  Month?: Series[];
+  Week?: Series[];
 }
 
 export interface Social {
-    title: string;
-    bgColor: string;
-    iconClass: string;
-    description: string;
+  title: string;
+  bgColor: string;
+  iconClass: string;
+  description: string;
 }
 
 export interface LatestTransactions {
-    orderId: string;
-    billingName: string;
-    orderDate: string;
-    total: string;
-    paymentStatus: string;
-    methodIcon: string;
-    paymentMethod: string;
+  orderId: string;
+  billingName: string;
+  orderDate: string;
+  total: string;
+  paymentStatus: string;
+  methodIcon: string;
+  paymentMethod: string;
+}
+
+export interface column {
+  header: string;
+  accessorKey: string;
+  enableColumnFilter: boolean;
+  enableSorting: boolean;
 }

@@ -3,7 +3,7 @@ import { Container } from "reactstrap";
 import Breadcrumb from "Components/Common/Breadcrumb";
 
 const DashboardReferral = () => {
-  document.title = "Dashboards | Skote - React Admin & Dashboard Template";
+  document.title = "Dashboards | Bitmoi";
 
   return (
     <React.Fragment>
