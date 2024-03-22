@@ -142,24 +142,28 @@ const SidebarContent = (props: any) => {
           <ul className="metismenu list-unstyled" id="side-menu">
             <li className="menu-title">{props.t("Menu")} </li>
             <li>
-              <Link to="/dashboard-users" className="has-arrow">
+              <Link to="/dashboard" className="has-arrow">
                 <i className="bx bx-caret-right"></i>
                 <span>{props.t("회원관리")}</span>
               </Link>
             </li>
             <li>
-              <Link to="/dashboard-invest" className="has-arrow">
+              <Link to="/#" className="has-arrow">
                 <i className="bx bx-caret-right"></i>
                 <span>{props.t("모의투자 관리")}</span>
               </Link>
-              {/* <ul className="sub-menu">
+              <ul className="sub-menu">
                 <li>
-                  <Link to="/dashboard-invest/prac">{props.t("연습모드")}</Link>
+                  <Link to="/dashboard-invest?mode=prac">
+                    {props.t("연습모드")}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard-invest/comp">{props.t("경쟁모드")}</Link>
+                  <Link to="/dashboard-invest?mode=comp">
+                    {props.t("경쟁모드")}
+                  </Link>
                 </li>
-              </ul> */}
+              </ul>
             </li>
             <li>
               <Link to="/dashboard-usdp" className="has-arrow">

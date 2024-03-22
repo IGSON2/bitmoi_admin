@@ -13,7 +13,7 @@ import DashboardToken from "pages/Dashboard-token";
 import DashboardUsdp from "pages/Dashboard-usdp";
 
 const authProtectedRoutes = [
-  { path: "/dashboard-users", component: <Dashboard /> },
+  { path: "/dashboard", component: <Dashboard /> },
   { path: "/dashboard-invest", component: <DashboardInvest /> },
   { path: "/dashboard-referral", component: <DashboardReferral /> },
   { path: "/dashboard-token", component: <DashboardToken /> },

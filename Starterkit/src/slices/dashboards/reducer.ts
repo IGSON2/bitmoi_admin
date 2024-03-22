@@ -8,6 +8,7 @@ interface initialStateType {
   dashboardTransaction: LatestTransactions[];
   error: object;
   loading: boolean;
+  // 각 대시보드 데이터 관리
 }
 
 interface Error {

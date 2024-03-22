@@ -14,3 +14,12 @@ export const POST_EDIT_PROFILE = "/post-fake-profile";
 
 //latest transaction
 export const GET_TRANSACTION = "/transaction";
+
+//bitmoi
+export const POST_LOGIN = "/admin/login";
+
+export const GET_USERS = "/admin/users";
+export const GET_INVEST_INFO = "/admin/invest";
+export const GET_USDP_INFO = "/admin/usdp";
+export const GET_TOKEN_INFO = "/admin/token";
+export const GET_REFERRAL_INFO = "/admin/referral";

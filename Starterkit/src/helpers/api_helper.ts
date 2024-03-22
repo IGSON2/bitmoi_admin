@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // default
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "https://api.bitmoi.co.kr";
 
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -54,12 +54,13 @@ class APIClient {
     let paramKeys: any = [];
 
     if (params) {
-      Object.keys(params).map(key => {
-        paramKeys.push(key + '=' + params[key]);
+      Object.keys(params).map((key) => {
+        paramKeys.push(key + "=" + params[key]);
         return paramKeys;
       });
 
-      const queryString = paramKeys && paramKeys.length ? paramKeys.join('&') : "";
+      const queryString =
+        paramKeys && paramKeys.length ? paramKeys.join("&") : "";
       response = axios.get(`${url}?${queryString}`, params);
     } else {
       response = axios.get(`${url}`, params);
