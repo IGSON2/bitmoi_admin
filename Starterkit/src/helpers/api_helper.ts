@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // default
-axios.defaults.baseURL = "https://api.bitmoi.co.kr";
+// axios.defaults.baseURL = "https://api.bitmoi.co.kr";
+axios.defaults.baseURL = "http://localhost:5000";
 
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";

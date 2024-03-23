@@ -1,3 +1,4 @@
+import { Mode } from "Components/Common/type";
 import { APIClient } from "./api_helper";
 
 import * as url from "./url_helper";
@@ -26,7 +27,7 @@ export const postLogin = (data: any) => api.create(url.POST_LOGIN, data);
 export const getUsers = () => api.get(url.GET_USERS, null);
 
 //get invest info
-export const getInvestInfo = (data: any) => api.get(url.GET_INVEST_INFO, data);
+export const getInvestInfo = (data: Mode) => api.get(url.GET_INVEST_INFO, data);
 
 //get usdp info
 export const getUsdpInfo = (data: any) => api.get(url.GET_USDP_INFO, data);

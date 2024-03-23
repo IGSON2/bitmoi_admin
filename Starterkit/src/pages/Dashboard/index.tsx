@@ -20,7 +20,7 @@ const Dashboard = () => {
         enableSorting: true,
       },
       {
-        header: "아이디",
+        header: "아이디(이메일)",
         accessorKey: "id",
         enableColumnFilter: false,
         enableSorting: true,
@@ -364,6 +364,11 @@ const Dashboard = () => {
       signup: "2022-02-04 20:00:00",
       lastaccess: "2022-02-05 18:00:00",
     },
+    {
+      number: 21,
+      nickname: "Noah Lee",
+      id: "",
+    },
   ];
 
   document.title = "Dashboards | Users";
@@ -382,6 +387,7 @@ const Dashboard = () => {
             pagination="pagination"
             paginationWrapper="dataTables_paginate paging_simple_numbers"
             tableClass="table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
+            isCustomPageSize={true}
           />
         </Container>
       </div>

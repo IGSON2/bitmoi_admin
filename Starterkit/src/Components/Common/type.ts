@@ -1,3 +1,12 @@
+import {
+  MODE_COMP,
+  MODE_PRAC,
+  POSITION_LONG_EN,
+  POSITION_LONG_KR,
+  POSITION_SHORT_EN,
+  POSITION_SHORT_KR,
+} from "./const";
+
 export interface Report {
   title: string;
   iconClass: string;
@@ -39,3 +48,10 @@ export interface column {
   enableColumnFilter: boolean;
   enableSorting: boolean;
 }
+
+export type Mode = typeof MODE_PRAC | typeof MODE_COMP;
+export type Position =
+  | typeof POSITION_LONG_EN
+  | typeof POSITION_SHORT_EN
+  | typeof POSITION_LONG_KR
+  | typeof POSITION_SHORT_KR;

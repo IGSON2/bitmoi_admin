@@ -1,4 +1,3 @@
-import { getFirebaseBackend } from "helpers/firebase_helper";
 import { postFakeLogin } from "helpers/fakebackend_helper";
 import {
   loginSuccess,
@@ -6,15 +5,12 @@ import {
   logoutUserSuccess,
   resetLoginFlag,
 } from "./reducer";
-import { postLogin } from "@helpers/backend_helper";
+import { postLogin } from "helpers/backend_helper";
 
 export const loginuser = (user: any, history: any) => async (dispatch: any) => {
   try {
     let response: any;
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      let fireBaseBackend = await getFirebaseBackend();
-      response = fireBaseBackend.loginUser(user.email, user.password);
-    } else if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
+    if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
       response = await postLogin({
         user: user.email,
         password: user.password,
@@ -36,14 +32,7 @@ export const loginuser = (user: any, history: any) => async (dispatch: any) => {
 export const logoutUser = () => async (dispatch: any) => {
   try {
     localStorage.removeItem("authUser");
-
-    const fireBaseBackend = getFirebaseBackend();
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      const response = fireBaseBackend.logout;
-      dispatch(logoutUserSuccess(response));
-    } else {
-      dispatch(logoutUserSuccess(true));
-    }
+    dispatch(logoutUserSuccess(true));
   } catch (error) {
     dispatch(apiError(error));
   }
@@ -62,12 +51,6 @@ export const socialLogin =
   (type: any, history: any) => async (dispatch: any) => {
     try {
       let response: any;
-
-      if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-        const fireBaseBackend = getFirebaseBackend();
-        response = fireBaseBackend.socialLoginUser(type);
-      }
-
       const socialdata = await response;
       if (socialdata) {
         sessionStorage.setItem("authUser", JSON.stringify(socialdata));
