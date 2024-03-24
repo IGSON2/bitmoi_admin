@@ -154,30 +154,30 @@ const SidebarContent = (props: any) => {
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="/dashboard-invest?mode=prac">
-                    {props.t("연습모드")}
-                  </Link>
+                  <Link to="/dashboard-invest/prac">{props.t("연습모드")}</Link>
                 </li>
                 <li>
-                  <Link to="/dashboard-invest?mode=comp">
-                    {props.t("경쟁모드")}
-                  </Link>
+                  <Link to="/dashboard-invest/comp">{props.t("경쟁모드")}</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <Link to="/dashboard-usdp" className="has-arrow">
+              <Link to="#" className="has-arrow">
                 <i className="bx bx-caret-right"></i>
                 <span>{props.t("USDP 관리")}</span>
               </Link>
-              {/* <ul className="sub-menu">
+              <ul className="sub-menu">
                 <li>
-                  <Link to="/dashboard">{props.t("USDP (연습모드)")}</Link>
+                  <Link to="/dashboard-usdp/read">
+                    {props.t("USDP (연습모드)")}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="#">{props.t("USDP 지급/차감")}</Link>
+                  <Link to="/dashboard-usdp/update">
+                    {props.t("USDP 지급/차감")}
+                  </Link>
                 </li>
-              </ul> */}
+              </ul>
             </li>
             <li>
               <Link to="/dashboard-token" className="has-arrow">

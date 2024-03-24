@@ -1,8 +1,24 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Breadcrumb from "Components/Common/Breadcrumb";
 import { Container } from "reactstrap";
 import { column } from "Components/Common/type";
 import TableContainer from "Components/Common/TableContainer";
+import { getUsers } from "@helpers/backend_helper";
+
+type user = {
+  number: number;
+  nickname: string;
+  id: string;
+  usdp: number;
+  token: number;
+  attendance: number;
+  prac: string;
+  comp: string;
+  referral: number;
+  recom: string;
+  signup: string;
+  lastaccess: string;
+};
 
 const Dashboard = () => {
   const columns: column[] = useMemo(
@@ -83,7 +99,7 @@ const Dashboard = () => {
     []
   );
 
-  const data = [
+  const initData: user[] = [
     {
       number: 1,
       nickname: "Jennifer Chang",
@@ -364,12 +380,21 @@ const Dashboard = () => {
       signup: "2022-02-04 20:00:00",
       lastaccess: "2022-02-05 18:00:00",
     },
-    {
-      number: 21,
-      nickname: "Noah Lee",
-      id: "",
-    },
   ];
+
+  const [data, setData] = useState<user[]>(initData);
+
+  // useEffect(() => {
+  //   async function getUsersData() {
+  //     const users = await getUsers();
+  //     console.log(users);
+  //     if (users.status === 200) {
+  //       setData(users.data);
+  //       return;
+  //     }
+  //   }
+  //   getUsersData();
+  // }, []);
 
   document.title = "Dashboards | Users";
 

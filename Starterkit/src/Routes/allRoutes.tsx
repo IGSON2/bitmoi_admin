@@ -7,17 +7,21 @@ import Logout from "pages/Authentication/Logout";
 import UserProfile from "pages/Authentication/user-profile";
 import ForgotPassword from "pages/Authentication/ForgotPassword";
 import SignUp from "pages/Authentication/Register";
-import DashboardInvest from "pages/Dashboard-invest";
+import DashboardInvestPrac from "pages/Dashboard-invest/Invest-prac";
 import DashboardReferral from "pages/Dashboard-referral";
 import DashboardToken from "pages/Dashboard-token";
-import DashboardUsdp from "pages/Dashboard-usdp";
+import DashboardUsdpRead from "pages/Dashboard-usdp/Usdp-read";
+import DashboardUsdpUpdate from "pages/Dashboard-usdp/Usdp-update";
+import DashboardInvestComp from "pages/Dashboard-invest/Invest-comp";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
-  { path: "/dashboard-invest", component: <DashboardInvest /> },
+  { path: "/dashboard-invest/prac", component: <DashboardInvestPrac /> },
+  { path: "/dashboard-invest/comp", component: <DashboardInvestComp /> },
   { path: "/dashboard-referral", component: <DashboardReferral /> },
   { path: "/dashboard-token", component: <DashboardToken /> },
-  { path: "/dashboard-usdp", component: <DashboardUsdp /> },
+  { path: "/dashboard-usdp/read", component: <DashboardUsdpRead /> },
+  { path: "/dashboard-usdp/update", component: <DashboardUsdpUpdate /> },
   { path: "/profile", component: <UserProfile /> },
 
   { path: "/", exact: true, component: <Navigate to="/dashboard" /> },
