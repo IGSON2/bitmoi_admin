@@ -23,17 +23,17 @@ export const getTransaction = () => api.get(url.GET_TRANSACTION, null);
 // Login Method
 export const postLogin = (data: any) => api.create(url.POST_LOGIN, data);
 
-//get users
+// get users
 export const getUsers = () => api.get(url.GET_USERS, null);
 
-//get invest info
+// get invest info
 export const getInvestInfo = (data: Mode) => api.get(url.GET_INVEST_INFO, data);
 
-//get usdp info
+// get usdp info
 export const getUsdpInfo = (data: any) => api.get(url.GET_USDP_INFO, data);
 
-//get token info
+// get token info
 export const getTokenInfo = () => api.get(url.GET_TOKEN_INFO, null);
 
-//get referral info
+// get referral info
 export const getReferralInfo = () => api.get(url.GET_REFERRAL_INFO, null);
