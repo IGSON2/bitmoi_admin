@@ -16,7 +16,7 @@ export const POST_EDIT_PROFILE = "/post-fake-profile";
 export const GET_TRANSACTION = "/transaction";
 
 //bitmoi
-export const POST_LOGIN = "/admin/login";
+export const POST_LOGIN = "/basic/user/login";
 
 export const GET_USERS = "/admin/users";
 export const GET_INVEST_INFO = "/admin/invest";

@@ -88,10 +88,9 @@ const Dashboard = () => {
     []
   );
 
-  const [data, setData] = useState<any>([]);
-
   interface selectState {
     dashboardUser: {
+      // 가져오려는 오브젝트의 이름이 리듀서에서 설정한 이름과 같아야 함
       dashboardUsers: DashboardUser[];
       loading: boolean;
     };

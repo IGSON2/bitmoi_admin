@@ -7,7 +7,8 @@ axios.defaults.baseURL = "http://localhost:5000";
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 // content type
-// let authUser: any = (localStorage.getItem("authUser"));
+let authUser: any = localStorage.getItem("authUser");
+axios.defaults.headers.common["authorization"] = "bearer " + authUser;
 
 // intercepting to capture errors
 axios.interceptors.response.use(

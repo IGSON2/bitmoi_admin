@@ -167,11 +167,11 @@ const SidebarContent = (props: any) => {
                 <span>{props.t("USDP 관리")}</span>
               </Link>
               <ul className="sub-menu">
-                <li>
+                {/* <li>
                   <Link to="/dashboard-usdp/read">
                     {props.t("USDP (연습모드)")}
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/dashboard-usdp/update">
                     {props.t("USDP 지급/차감")}

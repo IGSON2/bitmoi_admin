@@ -12,9 +12,11 @@ export const loginuser = (user: any, history: any) => async (dispatch: any) => {
     let response: any;
     if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
       response = await postLogin({
-        user: user.email,
+        user_id: user.email,
         password: user.password,
       });
+      localStorage.setItem("authUser", response.access_token);
+      dispatch(loginSuccess(response));
     } else if (process.env.REACT_APP_DEFAULTAUTH === "fake") {
       response = await postFakeLogin({
         email: user.email,
