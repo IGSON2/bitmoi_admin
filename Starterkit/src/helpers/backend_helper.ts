@@ -26,8 +26,9 @@ export const postLogin = (data: any) => api.create(url.POST_LOGIN, data);
 // get users
 export const getUsers = () => api.get(url.GET_USERS, null);
 
-// get invest info
-export const getInvestInfo = (data: Mode) => api.get(url.GET_INVEST_INFO, data);
+// get scores info
+export const getScoresInfo = (data: { mode: Mode }) =>
+  api.get(url.GET_SCORES_INFO, data);
 
 // get usdp info
 export const getUsdpInfo = (data: any) => api.get(url.GET_USDP_INFO, data);

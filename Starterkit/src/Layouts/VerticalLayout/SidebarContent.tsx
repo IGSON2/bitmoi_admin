@@ -154,10 +154,10 @@ const SidebarContent = (props: any) => {
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="/dashboard-invest/prac">{props.t("연습모드")}</Link>
+                  <Link to="/dashboard-scores/prac">{props.t("연습모드")}</Link>
                 </li>
                 <li>
-                  <Link to="/dashboard-invest/comp">{props.t("경쟁모드")}</Link>
+                  <Link to="/dashboard-scores/comp">{props.t("경쟁모드")}</Link>
                 </li>
               </ul>
             </li>

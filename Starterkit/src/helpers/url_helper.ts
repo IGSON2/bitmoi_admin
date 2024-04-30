@@ -19,7 +19,7 @@ export const GET_TRANSACTION = "/transaction";
 export const POST_LOGIN = "/basic/user/login";
 
 export const GET_USERS = "/admin/users";
-export const GET_INVEST_INFO = "/admin/invest";
+export const GET_SCORES_INFO = "/admin/scores";
 export const GET_USDP_INFO = "/admin/usdp";
 export const GET_TOKEN_INFO = "/admin/token";
 export const GET_REFERRAL_INFO = "/admin/referral";

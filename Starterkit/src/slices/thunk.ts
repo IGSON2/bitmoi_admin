@@ -14,4 +14,4 @@ export * from "./auth/register/thunk";
 export * from "./auth/forgetpwd/thunk";
 
 //Dashboard
-export * from "./dashboards/thunk";
+export * from "./dashboard/thunk";

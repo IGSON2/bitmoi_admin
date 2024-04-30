@@ -7,17 +7,17 @@ import Logout from "pages/Authentication/Logout";
 import UserProfile from "pages/Authentication/user-profile";
 import ForgotPassword from "pages/Authentication/ForgotPassword";
 import SignUp from "pages/Authentication/Register";
-import DashboardInvestPrac from "pages/Dashboard-invest/Invest-prac";
+import DashboardScoresPrac from "pages/Dashboard-scores/scores-prac";
 import DashboardReferral from "pages/Dashboard-referral";
 import DashboardToken from "pages/Dashboard-token";
 import DashboardUsdpRead from "pages/Dashboard-usdp/Usdp-read";
 import DashboardUsdpUpdate from "pages/Dashboard-usdp/Usdp-update";
-import DashboardInvestComp from "pages/Dashboard-invest/Invest-comp";
+import DashboardScoresComp from "pages/Dashboard-scores/scores-comp";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
-  { path: "/dashboard-invest/prac", component: <DashboardInvestPrac /> },
-  { path: "/dashboard-invest/comp", component: <DashboardInvestComp /> },
+  { path: "/dashboard-scores/prac", component: <DashboardScoresPrac /> },
+  { path: "/dashboard-scores/comp", component: <DashboardScoresComp /> },
   { path: "/dashboard-referral", component: <DashboardReferral /> },
   { path: "/dashboard-token", component: <DashboardToken /> },
   { path: "/dashboard-usdp/read", component: <DashboardUsdpRead /> },

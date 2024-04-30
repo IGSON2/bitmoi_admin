@@ -1,26 +1,25 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Breadcrumb from "Components/Common/Breadcrumb";
+import React, { useEffect, useMemo } from "react";
 import { Container } from "reactstrap";
-import { column } from "Components/Common/type";
+import Breadcrumb from "Components/Common/Breadcrumb";
 import TableContainer from "Components/Common/TableContainer";
-import { DashboardUser } from "./types";
-import { useDispatch } from "react-redux";
-import { createSelector } from "reselect";
+import { column } from "Components/Common/type";
+import { DashboardScore } from "../types";
+import {
+  MODE_PRAC,
+  POSITION_LONG_EN,
+  POSITION_SHORT_EN,
+} from "Components/Common/const";
 import { useSelector } from "react-redux";
-import { getUsers } from "slices/dashboard/thunk";
+import { useDispatch } from "react-redux";
+import { getScores } from "slices/dashboard-scores/thunk";
+import { createSelector } from "reselect";
 
-const Dashboard = () => {
+const DashboardScoresPrac = () => {
   const columns: column[] = useMemo(
     () => [
       {
         header: "회원번호",
         accessorKey: "number",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "닉네임",
-        accessorKey: "nickname",
         enableColumnFilter: false,
         enableSorting: true,
       },
@@ -31,56 +30,74 @@ const Dashboard = () => {
         enableSorting: true,
       },
       {
-        header: "USDP",
-        accessorKey: "usdp",
+        header: "배팅 USDP",
+        accessorKey: "bettingusdp",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "Token",
-        accessorKey: "token",
+        header: "포지션",
+        accessorKey: "position",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "출석 횟수",
-        accessorKey: "attendance",
+        header: "배율",
+        accessorKey: "leverage",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "전적 (연습)",
-        accessorKey: "prac",
+        header: "수익률",
+        accessorKey: "roe",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "전적 (경쟁)",
-        accessorKey: "comp",
+        header: "수익 USDP",
+        accessorKey: "pnl",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "레퍼럴 수",
-        accessorKey: "referral",
+        header: "진입 시간",
+        accessorKey: "entrytime",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "추천 코드",
-        accessorKey: "recom",
+        header: "종료 시간",
+        accessorKey: "exittime",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "가입일",
-        accessorKey: "signup",
+        header: "경과 시간",
+        accessorKey: "ownedtime",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "최근 접속일",
-        accessorKey: "lastaccess",
+        header: "진입 후 최대 손익률",
+        accessorKey: "maxminroe",
+        enableColumnFilter: false,
+        enableSorting: true,
+      },
+      {
+        header: "주문 생성 시간",
+        accessorKey: "submittime",
+        enableColumnFilter: false,
+        enableSorting: true,
+      },
+      {
+        header: "비정상 종료 정산 시각",
+        accessorKey: "settledat",
+        enableColumnFilter: false,
+        enableSorting: true,
+      },
+      {
+        header: "이후 정리 시각",
+        accessorKey: "afterexittime",
         enableColumnFilter: false,
         enableSorting: true,
       },
@@ -89,42 +106,42 @@ const Dashboard = () => {
   );
 
   interface selectState {
-    dashboardUser: {
+    dashboardScore: {
       // 가져오려는 오브젝트의 이름이 리듀서에서 설정한 이름과 같아야 함
-      dashboardUsers: DashboardUser[];
+      dashboardScores: DashboardScore[];
       loading: boolean;
     };
   }
 
   const selectProperties = createSelector(
-    (state: selectState) => state.dashboardUser,
+    (state: selectState) => state.dashboardScore,
     (dashboard) => ({
-      dashboardUsers: dashboard.dashboardUsers,
+      dashboardScores: dashboard.dashboardScores,
       loading: dashboard.loading,
     })
   );
 
   const dispatch = useDispatch<any>();
-  const { dashboardUsers, loading } = useSelector(selectProperties);
+  const { dashboardScores, loading } = useSelector(selectProperties);
 
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getScores(MODE_PRAC));
   }, []);
 
-  document.title = "Dashboards | Users";
+  document.title = "Dashboards | Invest";
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumb title="회원관리" breadcrumbItem="Users" />
+          <Breadcrumb title="회원관리" breadcrumbItem="Invest" />
           <TableContainer
             columns={columns}
-            data={dashboardUsers || []}
+            data={dashboardScores || []}
             isGlobalFilter={true}
             isPagination={true}
             SearchPlaceholder={`${
-              dashboardUsers.length ? dashboardUsers.length : 0
+              dashboardScores.length ? dashboardScores.length : 0
             } records...`}
             pagination="pagination"
             paginationWrapper="dataTables_paginate paging_simple_numbers"
@@ -137,4 +154,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardScoresPrac;

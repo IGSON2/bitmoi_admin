@@ -4,11 +4,21 @@ import axios from "axios";
 // axios.defaults.baseURL = "https://api.bitmoi.co.kr";
 axios.defaults.baseURL = "http://localhost:5000";
 
-// content type
-axios.defaults.headers.post["Content-Type"] = "application/json";
-// content type
-let authUser: any = localStorage.getItem("authUser");
-axios.defaults.headers.common["authorization"] = "bearer " + authUser;
+axios.interceptors.request.use(
+  function (config: any) {
+    config.headers["Content-Type"] = "application/json";
+
+    const authUser = localStorage.getItem("authUser");
+    if (authUser) {
+      config.headers["authorization"] = "Bearer " + authUser;
+    }
+    return config;
+  },
+  function (error: any) {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
 
 // intercepting to capture errors
 axios.interceptors.response.use(
@@ -23,6 +33,7 @@ axios.interceptors.response.use(
         message = "Internal Server Error";
         break;
       case 401:
+        localStorage.removeItem("authUser");
         message = "Invalid credentials";
         break;
       case 404:
@@ -34,13 +45,6 @@ axios.interceptors.response.use(
     return Promise.reject(message);
   }
 );
-/**
- * Sets the default authorization
- * @param {*} token
- */
-const setAuthorization = (token: any) => {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-};
 
 class APIClient {
   /**
@@ -103,4 +107,4 @@ const getLoggedinUser = () => {
   }
 };
 
-export { APIClient, setAuthorization, getLoggedinUser };
+export { APIClient, getLoggedinUser };

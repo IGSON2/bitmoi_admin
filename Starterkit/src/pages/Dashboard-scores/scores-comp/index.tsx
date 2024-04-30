@@ -5,7 +5,7 @@ import TableContainer from "Components/Common/TableContainer";
 import { column } from "Components/Common/type";
 import { POSITION_LONG_KR } from "Components/Common/const";
 
-const DashboardInvestComp = () => {
+const DashboardScoresComp = () => {
   const columns: column[] = useMemo(
     () => [
       {
@@ -177,4 +177,4 @@ const DashboardInvestComp = () => {
   );
 };
 
-export default DashboardInvestComp;
+export default DashboardScoresComp;

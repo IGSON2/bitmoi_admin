@@ -50,6 +50,7 @@ export interface column {
 }
 
 export type Mode = typeof MODE_PRAC | typeof MODE_COMP;
+
 export type Position =
   | typeof POSITION_LONG_EN
   | typeof POSITION_SHORT_EN
