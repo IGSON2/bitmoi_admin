@@ -6,6 +6,7 @@ import {
   resetLoginFlag,
 } from "./reducer";
 import { postLogin } from "helpers/backend_helper";
+import { AccessToken, RefreshToken } from "helpers/localstorage_helper";
 
 export const loginuser = (user: any, history: any) => async (dispatch: any) => {
   try {
@@ -15,14 +16,15 @@ export const loginuser = (user: any, history: any) => async (dispatch: any) => {
         user_id: user.email,
         password: user.password,
       });
-      localStorage.setItem("authUser", response.access_token);
+      localStorage.setItem(AccessToken, response.access_token);
+      localStorage.setItem(RefreshToken, response.refresh_token);
       dispatch(loginSuccess(response));
     } else if (process.env.REACT_APP_DEFAULTAUTH === "fake") {
       response = await postFakeLogin({
         email: user.email,
         password: user.password,
       });
-      localStorage.setItem("authUser", JSON.stringify(response));
+      localStorage.setItem(AccessToken, JSON.stringify(response));
       dispatch(loginSuccess(response));
     }
     history("/dashboard");
@@ -33,7 +35,7 @@ export const loginuser = (user: any, history: any) => async (dispatch: any) => {
 
 export const logoutUser = () => async (dispatch: any) => {
   try {
-    localStorage.removeItem("authUser");
+    localStorage.removeItem(AccessToken);
     dispatch(logoutUserSuccess(true));
   } catch (error) {
     dispatch(apiError(error));

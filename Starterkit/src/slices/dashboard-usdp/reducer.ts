@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { getUsers } from "./thunk";
-import { DashboardUser } from "pages/Dashboard/types";
+import { getUsdpInfo } from "./thunk";
+import { DashboardUsdpInfo } from "pages/Dashboard-usdp/types";
 
 // types
 interface initialStateType {
-  dashboardUsers: DashboardUser[];
+  dashboardUsdpInfos: DashboardUsdpInfo[];
   error: object;
   loading: boolean;
 }
@@ -13,28 +13,28 @@ interface Error {
   error: object;
 }
 
-const initData: DashboardUser[] = [];
+const initData: DashboardUsdpInfo[] = [];
 
 export const initialState: initialStateType = {
-  dashboardUsers: initData,
+  dashboardUsdpInfos: initData,
   error: {},
   loading: true,
 };
 
-const dashboardUserSlice = createSlice({
-  name: "dashboardUserSlice",
+const DashboardUsdpInfoSlice = createSlice({
+  name: "DashboardUsdpInfoSlice",
   initialState,
   reducers: {},
   extraReducers: (builder: any) => {
     builder.addCase(
-      getUsers.fulfilled,
-      (state: initialStateType, action: PayloadAction<DashboardUser[]>) => {
-        state.dashboardUsers = action.payload;
+      getUsdpInfo.fulfilled,
+      (state: initialStateType, action: PayloadAction<DashboardUsdpInfo[]>) => {
+        state.dashboardUsdpInfos = action.payload;
       }
     );
 
     builder.addCase(
-      getUsers.rejected,
+      getUsdpInfo.rejected,
       (state: initialStateType, action: PayloadAction<Error | any>) => {
         state.error = action.payload ? action.payload?.error : null;
       }
@@ -42,4 +42,4 @@ const dashboardUserSlice = createSlice({
   },
 });
 
-export default dashboardUserSlice.reducer;
+export default DashboardUsdpInfoSlice.reducer;

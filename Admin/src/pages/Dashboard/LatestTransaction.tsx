@@ -1,13 +1,13 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import withRouter from "../../Components/Common/withRouter";
 
-import { Badge, Button, Card, CardBody, CardTitle, } from "reactstrap";
+import { Badge, Button, Card, CardBody, CardTitle } from "reactstrap";
 import EcommerenceOrdersModal from "../Ecommerce/EcommerceOrders/EcommerceOrdersModal";
 
 import TableContainer from "../../Components/Common/TableContainer";
 import { getTransaction as onGetTransaction } from "slices/thunk";
 import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 import { LatestTransactions } from "./type";
 import { Link } from "react-router-dom";
 
@@ -16,24 +16,29 @@ interface selectState {
     dashboardTransaction: LatestTransactions[];
     loading: boolean;
   };
-};
+}
 
 const LatestTransaction: React.FC = () => {
-
   const dispatch = useDispatch<any>();
 
   const selectProperties = createSelector(
     (state: selectState) => state.dashboard,
     (dashboard) => ({
-      latestTransaction: dashboard.dashboardTransaction
+      latestTransaction: dashboard.dashboardTransaction,
     })
   );
 
   const { latestTransaction } = useSelector(selectProperties);
 
   const [modal1, setModal1] = useState<boolean>(false);
-  const [editDetails, setEditDetails] = useState<any>('');
-  const toggleViewModal = useCallback((value: any) => { setModal1(!modal1); setEditDetails(value) }, [modal1]);
+  const [editDetails, setEditDetails] = useState<any>("");
+  const toggleViewModal = useCallback(
+    (value: any) => {
+      setModal1(!modal1);
+      setEditDetails(value);
+    },
+    [modal1]
+  );
 
   const columns = useMemo(
     () => [
@@ -52,7 +57,11 @@ const LatestTransaction: React.FC = () => {
         enableColumnFilter: false,
         enableSorting: true,
         cell: (cellProps: any) => {
-          return <Link to="#" className="text-body fw-bold">{cellProps.row.original.orderId}</Link>;
+          return (
+            <Link to="#" className="text-body fw-bold">
+              {cellProps.row.original.orderId}
+            </Link>
+          );
         },
       },
       {
@@ -79,11 +88,21 @@ const LatestTransaction: React.FC = () => {
         enableColumnFilter: false,
         enableSorting: true,
         cell: (cellProps: any) => {
-          return <Badge className={"font-size-11 badge-soft-" +
-            (cellProps.row.original.paymentStatus === "Paid" ? "success" : "danger" && cellProps.row.original.paymentStatus === "Refund" ? "warning" : "danger")}
-          >
-            {cellProps.row.original.paymentStatus}
-          </Badge>;
+          return (
+            <Badge
+              className={
+                "font-size-11 badge-soft-" +
+                (cellProps.row.original.paymentStatus === "Paid"
+                  ? "success"
+                  : "danger" &&
+                    cellProps.row.original.paymentStatus === "Refund"
+                  ? "warning"
+                  : "danger")
+              }
+            >
+              {cellProps.row.original.paymentStatus}
+            </Badge>
+          );
         },
       },
       {
@@ -92,15 +111,25 @@ const LatestTransaction: React.FC = () => {
         enableColumnFilter: false,
         enableSorting: true,
         cell: (cellProps: any) => {
-          return <span>
-            <i className={
-              (cellProps.row.original.paymentMethod === "Paypal" ? "fab fa-cc-paypal me-1" : "" ||
-                cellProps.row.original.paymentMethod === "COD" ? "fab fas fa-money-bill-alt me-1" : "" ||
-                  cellProps.row.original.paymentMethod === "Mastercard" ? "fab fa-cc-mastercard me-1" : "" ||
-                    cellProps.row.original.paymentMethod === "Visa" ? "fab fa-cc-visa me-1" : ""
-              )}
-            /> {cellProps.row.original.paymentMethod}
-          </span>;
+          return (
+            <span>
+              <i
+                className={
+                  cellProps.row.original.paymentMethod === "Paypal"
+                    ? "fab fa-cc-paypal me-1"
+                    : "" || cellProps.row.original.paymentMethod === "COD"
+                    ? "fab fas fa-money-bill-alt me-1"
+                    : "" ||
+                      cellProps.row.original.paymentMethod === "Mastercard"
+                    ? "fab fa-cc-mastercard me-1"
+                    : "" || cellProps.row.original.paymentMethod === "Visa"
+                    ? "fab fa-cc-visa me-1"
+                    : ""
+                }
+              />{" "}
+              {cellProps.row.original.paymentMethod}
+            </span>
+          );
         },
       },
       {
@@ -110,7 +139,15 @@ const LatestTransaction: React.FC = () => {
         enableSorting: true,
         cell: (cellProps: any) => {
           return (
-            <Button type="button" color="primary" className="btn-sm btn-rounded" onClick={() => toggleViewModal(cellProps.cell.row.original)}  > View Details </Button>
+            <Button
+              type="button"
+              color="primary"
+              className="btn-sm btn-rounded"
+              onClick={() => toggleViewModal(cellProps.cell.row.original)}
+            >
+              {" "}
+              View Details{" "}
+            </Button>
           );
         },
       },
@@ -119,16 +156,21 @@ const LatestTransaction: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(onGetTransaction())
-  }, [dispatch])
-
+    dispatch(onGetTransaction());
+  }, [dispatch]);
 
   return (
     <React.Fragment>
-      <EcommerenceOrdersModal isOpen={modal1} toggle={toggleViewModal} editDetails={editDetails} />
+      <EcommerenceOrdersModal
+        isOpen={modal1}
+        toggle={toggleViewModal}
+        editDetails={editDetails}
+      />
       <Card>
         <CardBody>
-          <CardTitle tag="h4" className="mb-4">Latest Transaction</CardTitle>
+          <CardTitle tag="h4" className="mb-4">
+            Latest Transaction
+          </CardTitle>
           <TableContainer
             columns={columns}
             data={latestTransaction}
@@ -141,6 +183,5 @@ const LatestTransaction: React.FC = () => {
     </React.Fragment>
   );
 };
-
 
 export default withRouter(LatestTransaction);

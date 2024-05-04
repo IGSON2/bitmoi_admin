@@ -2,6 +2,7 @@ import { Mode } from "Components/Common/type";
 import { APIClient } from "./api_helper";
 
 import * as url from "./url_helper";
+import { SetUsdpParam } from "pages/Dashboard/types";
 
 const api = new APIClient();
 
@@ -23,6 +24,10 @@ export const getTransaction = () => api.get(url.GET_TRANSACTION, null);
 // Login Method
 export const postLogin = (data: any) => api.create(url.POST_LOGIN, data);
 
+// Refresh Token
+export const postReissueAccess = (data: any) =>
+  api.create(url.POST_REISSUE_ACCESS, data);
+
 // get users
 export const getUsers = () => api.get(url.GET_USERS, null);
 
@@ -31,7 +36,11 @@ export const getScoresInfo = (data: { mode: Mode }) =>
   api.get(url.GET_SCORES_INFO, data);
 
 // get usdp info
-export const getUsdpInfo = (data: any) => api.get(url.GET_USDP_INFO, data);
+export const getUsdpInfo = () => api.get(url.GET_USDP_INFO, null);
+
+// set usdp info
+export const setUsdpInfo = (data: SetUsdpParam) =>
+  api.create(url.GET_USDP_INFO, data);
 
 // get token info
 export const getTokenInfo = () => api.get(url.GET_TOKEN_INFO, null);

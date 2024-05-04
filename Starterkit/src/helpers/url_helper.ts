@@ -17,6 +17,7 @@ export const GET_TRANSACTION = "/transaction";
 
 //bitmoi
 export const POST_LOGIN = "/basic/user/login";
+export const POST_REISSUE_ACCESS = "/basic/reissueAccess";
 
 export const GET_USERS = "/admin/users";
 export const GET_SCORES_INFO = "/admin/scores";

@@ -167,19 +167,14 @@ const SidebarContent = (props: any) => {
                 <span>{props.t("USDP 관리")}</span>
               </Link>
               <ul className="sub-menu">
-                {/* <li>
-                  <Link to="/dashboard-usdp/read">
-                    {props.t("USDP (연습모드)")}
-                  </Link>
-                </li> */}
                 <li>
-                  <Link to="/dashboard-usdp/update">
-                    {props.t("USDP 지급/차감")}
+                  <Link to="/dashboard-usdp/read">
+                    {props.t("USDP 지급/차감 내역")}
                   </Link>
                 </li>
               </ul>
             </li>
-            <li>
+            {/* <li>
               <Link to="/dashboard-token" className="has-arrow">
                 <i className="bx bx-caret-right"></i>
                 <span>{props.t("Token 관리")}</span>
@@ -190,7 +185,7 @@ const SidebarContent = (props: any) => {
                 <i className="bx bx-caret-right"></i>
                 <span>{props.t("레퍼럴 관리")}</span>
               </Link>
-            </li>
+            </li> */}
 
             {/* <li>
               <Link to="/#" className="has-arrow">

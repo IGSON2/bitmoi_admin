@@ -8,6 +8,7 @@ import ForgotPasswordReducer from "./auth/forgetpwd/reducer";
 import AccountReducer from "./auth/register/reducer";
 import DashboardUserReducer from "./dashboard/reducer";
 import DashboardScoreReducer from "./dashboard-scores/reducer";
+import DashboardUsdpReducer from "./dashboard-usdp/reducer";
 
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   Account: AccountReducer,
   dashboardUser: DashboardUserReducer,
   dashboardScore: DashboardScoreReducer,
+  dashboardUsdpInfo: DashboardUsdpReducer,
 });
 
 export default rootReducer;

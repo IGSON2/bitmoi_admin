@@ -13,6 +13,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   flexRender,
+  SortingState,
 } from "@tanstack/react-table";
 
 import { rankItem } from "@tanstack/match-sorter-utils";
@@ -97,6 +98,7 @@ interface TableContainerProps {
   isAddButton?: boolean;
   isCustomPageSize?: boolean;
   isJobListGlobalFilter?: boolean;
+  defaultSortingID: string;
 }
 
 const TableContainer = ({
@@ -117,7 +119,14 @@ const TableContainer = ({
   isCustomPageSize,
   handleUserClick,
   isJobListGlobalFilter,
+  defaultSortingID,
 }: TableContainerProps) => {
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: defaultSortingID,
+      desc: true,
+    },
+  ]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
 
@@ -138,6 +147,7 @@ const TableContainer = ({
     state: {
       columnFilters,
       globalFilter,
+      sorting,
     },
     onColumnFiltersChange: setColumnFilters,
     onGlobalFilterChange: setGlobalFilter,
@@ -146,6 +156,7 @@ const TableContainer = ({
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
   });
 
   const {

@@ -10,5 +10,11 @@ export interface DashboardUser {
   referral: number;
   recom: string;
   signup: string;
-  lastaccess: string;
+  last_access: string;
+}
+
+export interface SetUsdpParam {
+  user_id: string;
+  amount: number;
+  title: string;
 }

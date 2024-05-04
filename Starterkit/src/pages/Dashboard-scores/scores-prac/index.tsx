@@ -4,11 +4,7 @@ import Breadcrumb from "Components/Common/Breadcrumb";
 import TableContainer from "Components/Common/TableContainer";
 import { column } from "Components/Common/type";
 import { DashboardScore } from "../types";
-import {
-  MODE_PRAC,
-  POSITION_LONG_EN,
-  POSITION_SHORT_EN,
-} from "Components/Common/const";
+import { MODE_PRAC } from "Components/Common/const";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getScores } from "slices/dashboard-scores/thunk";
@@ -96,7 +92,7 @@ const DashboardScoresPrac = () => {
         enableSorting: true,
       },
       {
-        header: "이후 정리 시각",
+        header: "종료 이후 정리 시간",
         accessorKey: "afterexittime",
         enableColumnFilter: false,
         enableSorting: true,
@@ -141,12 +137,14 @@ const DashboardScoresPrac = () => {
             isGlobalFilter={true}
             isPagination={true}
             SearchPlaceholder={`${
-              dashboardScores.length ? dashboardScores.length : 0
+              dashboardScores ? dashboardScores.length : 0
             } records...`}
             pagination="pagination"
             paginationWrapper="dataTables_paginate paging_simple_numbers"
-            tableClass="table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
+            tableClass="dt-responsive nowrap w-100 dataTable no-footer dtr-inline table-hover"
+            theadClass="table-light"
             isCustomPageSize={true}
+            defaultSortingID="submittime"
           />
         </Container>
       </div>

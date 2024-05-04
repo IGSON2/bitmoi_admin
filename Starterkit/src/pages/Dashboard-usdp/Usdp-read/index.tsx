@@ -1,9 +1,13 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Container } from "reactstrap";
 import Breadcrumb from "Components/Common/Breadcrumb";
-import { POSITION_LONG_KR } from "Components/Common/const";
 import { column } from "Components/Common/type";
 import TableContainer from "Components/Common/TableContainer";
+import { DashboardUsdpInfo } from "../types";
+import { useDispatch } from "react-redux";
+import { createSelector } from "reselect";
+import { useSelector } from "react-redux";
+import { getUsdpInfo } from "slices/dashboard-usdp/thunk";
 
 const DashboardUsdpRead = () => {
   document.title = "Dashboards | usdp";
@@ -29,68 +33,32 @@ const DashboardUsdpRead = () => {
         enableSorting: true,
       },
       {
-        header: "매매금액",
-        accessorKey: "bettingusdp",
+        header: "지급/차감",
+        accessorKey: "amount",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "포지션",
-        accessorKey: "position",
+        header: "사유",
+        accessorKey: "title",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "배율",
-        accessorKey: "ratio",
+        header: "방식",
+        accessorKey: "method",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "수익률",
-        accessorKey: "roe",
+        header: "지급자",
+        accessorKey: "giver",
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: "수익 USDP",
-        accessorKey: "pnl",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "포지션 시간",
-        accessorKey: "positiontime",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "경과 시간",
-        accessorKey: "ownedtime",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "진입 후 최대 손익률",
-        accessorKey: "maxroe",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "주문 생성 시간",
-        accessorKey: "submittime",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "진입 시간",
-        accessorKey: "entrytime",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "종료 시간",
-        accessorKey: "exittime",
+        header: "일자",
+        accessorKey: "created_at",
         enableColumnFilter: false,
         enableSorting: true,
       },
@@ -98,323 +66,28 @@ const DashboardUsdpRead = () => {
     []
   );
 
-  let data: any[] = [
-    {
-      number: 100,
-      id: "jchang@gmail.com",
-      bettingusdp: 100000,
-      position: POSITION_LONG_KR,
-      ratio: 10,
-      roe: 12,
-      pnl: 1200,
-      positiontime: "4시간 20분",
-      ownedtime: "4시간 30분",
-      maxroe: "64%/-24%",
-      submittime: "12.10.12 19:32:12",
-      entrytime: "12.10.12 22:32:12",
-      exittime: "12.10.14 19:32:12",
-    },
-    {
-      number: 101,
-      id: "jsmith@gmail.com",
-      bettingusdp: 50000,
-      position: POSITION_LONG_KR,
-      ratio: 5,
-      roe: 8,
-      pnl: 400,
-      positiontime: "2시간 30분",
-      ownedtime: "3시간 45분",
-      maxroe: "32%/-16%",
-      submittime: "12.10.12 20:15:30",
-      entrytime: "12.10.12 23:45:10",
-      exittime: "12.10.14 18:20:45",
-    },
-    {
-      number: 102,
-      id: "ajohnson@gmail.com",
-      bettingusdp: 75000,
-      position: POSITION_LONG_KR,
-      ratio: 7,
-      roe: 10,
-      pnl: 750,
-      positiontime: "3시간 15분",
-      ownedtime: "4시간 10분",
-      maxroe: "48%/-20%",
-      submittime: "12.10.12 21:30:45",
-      entrytime: "12.10.13 00:15:20",
-      exittime: "12.10.14 17:40:30",
-    },
-    {
-      number: 103,
-      id: "jdoe@gmail.com",
-      bettingusdp: 25000,
-      position: POSITION_LONG_KR,
-      ratio: 3,
-      roe: 6,
-      pnl: 150,
-      positiontime: "1시간 45분",
-      ownedtime: "2시간 20분",
-      maxroe: "16%/-8%",
-      submittime: "12.10.12 22:45:30",
-      entrytime: "12.10.13 01:30:15",
-      exittime: "12.10.14 16:15:45",
-    },
-    {
-      number: 104,
-      id: "17EA@gmail.com",
-      bettingusdp: 30000,
-      position: POSITION_LONG_KR,
-      ratio: 4,
-      roe: 7,
-      pnl: 210,
-      positiontime: "2시간 10분",
-      ownedtime: "2시간 50분",
-      maxroe: "21%/-10%",
-      submittime: "12.10.12 23:15:45",
-      entrytime: "12.10.13 02:00:30",
-      exittime: "12.10.14 15:30:20",
-    },
-    {
-      number: 105,
-      id: "jwilliams@gmail.com",
-      bettingusdp: 40000,
-      position: POSITION_LONG_KR,
-      ratio: 6,
-      roe: 9,
-      pnl: 360,
-      positiontime: "2시간 40분",
-      ownedtime: "3시간 15분",
-      maxroe: "27%/-12%",
-      submittime: "12.10.13 00:45:30",
-      entrytime: "12.10.13 03:30:15",
-      exittime: "12.10.14 14:45:45",
-    },
-    {
-      number: 106,
-      id: "mjohnson@gmail.com",
-      bettingusdp: 60000,
-      position: POSITION_LONG_KR,
-      ratio: 8,
-      roe: 11,
-      pnl: 660,
-      positiontime: "3시간 40분",
-      ownedtime: "4시간 50분",
-      maxroe: "36%/-16%",
-      submittime: "12.10.13 01:15:45",
-      entrytime: "12.10.13 04:00:30",
-      exittime: "12.10.14 13:30:20",
-    },
-    {
-      number: 107,
-      id: "rsmith@gmail.com",
-      bettingusdp: 20000,
-      position: POSITION_LONG_KR,
-      ratio: 2,
-      roe: 5,
-      pnl: 100,
-      positiontime: "1시간 30분",
-      ownedtime: "2시간 10분",
-      maxroe: "11%/-6%",
-      submittime: "12.10.13 01:45:30",
-      entrytime: "12.10.13 04:30:15",
-      exittime: "12.10.14 12:15:45",
-    },
-    {
-      number: 108,
-      id: "jdoe2@gmail.com",
-      bettingusdp: 35000,
-      position: POSITION_LONG_KR,
-      ratio: 4,
-      roe: 7,
-      pnl: 245,
-      positiontime: "2시간 5분",
-      ownedtime: "2시간 40분",
-      maxroe: "18%/-9%",
-      submittime: "12.10.13 02:15:45",
-      entrytime: "12.10.13 05:00:30",
-      exittime: "12.10.14 11:30:20",
-    },
-    {
-      number: 109,
-      id: "17EA2@gmail.com",
-      bettingusdp: 45000,
-      position: POSITION_LONG_KR,
-      ratio: 5,
-      roe: 8,
-      pnl: 360,
-      positiontime: "2시간 40분",
-      ownedtime: "3시간 15분",
-      maxroe: "27%/-12%",
-      submittime: "12.10.13 02:45:30",
-      entrytime: "12.10.13 05:30:15",
-      exittime: "12.10.14 10:45:45",
-    },
-    {
-      number: 110,
-      id: "jwilliams2@gmail.com",
-      bettingusdp: 55000,
-      position: POSITION_LONG_KR,
-      ratio: 7,
-      roe: 10,
-      pnl: 550,
-      positiontime: "3시간 15분",
-      ownedtime: "4시간 10분",
-      maxroe: "36%/-16%",
-      submittime: "12.10.13 03:15:45",
-      entrytime: "12.10.13 06:00:30",
-      exittime: "12.10.14 09:30:20",
-    },
-    {
-      number: 111,
-      id: "mjohnson2@gmail.com",
-      bettingusdp: 65000,
-      position: POSITION_LONG_KR,
-      ratio: 9,
-      roe: 12,
-      pnl: 780,
-      positiontime: "3시간 40분",
-      ownedtime: "4시간 50분",
-      maxroe: "45%/-20%",
-      submittime: "12.10.13 03:45:30",
-      entrytime: "12.10.13 06:30:15",
-      exittime: "12.10.14 08:45:45",
-    },
-    {
-      number: 112,
-      id: "rsmith2@gmail.com",
-      bettingusdp: 25000,
-      position: POSITION_LONG_KR,
-      ratio: 3,
-      roe: 6,
-      pnl: 150,
-      positiontime: "1시간 45분",
-      ownedtime: "2시간 20분",
-      maxroe: "9%/-4%",
-      submittime: "12.10.13 04:15:45",
-      entrytime: "12.10.13 07:00:30",
-      exittime: "12.10.14 07:15:20",
-    },
-    {
-      number: 113,
-      id: "jdoe3@gmail.com",
-      bettingusdp: 30000,
-      position: POSITION_LONG_KR,
-      ratio: 4,
-      roe: 7,
-      pnl: 210,
-      positiontime: "2시간 10분",
-      ownedtime: "2시간 50분",
-      maxroe: "18%/-9%",
-      submittime: "12.10.13 04:45:30",
-      entrytime: "12.10.13 07:30:15",
-      exittime: "12.10.14 06:45:45",
-    },
-    {
-      number: 114,
-      id: "17EA3@gmail.com",
-      bettingusdp: 40000,
-      position: POSITION_LONG_KR,
-      ratio: 5,
-      roe: 8,
-      pnl: 320,
-      positiontime: "2시간 40분",
-      ownedtime: "3시간 15분",
-      maxroe: "27%/-12%",
-      submittime: "12.10.13 05:15:45",
-      entrytime: "12.10.13 08:00:30",
-      exittime: "12.10.14 05:30:20",
-    },
-    {
-      number: 115,
-      id: "jwilliams3@gmail.com",
-      bettingusdp: 50000,
-      position: POSITION_LONG_KR,
-      ratio: 6,
-      roe: 9,
-      pnl: 450,
-      positiontime: "2시간 40분",
-      ownedtime: "3시간 15분",
-      maxroe: "27%/-12%",
-      submittime: "12.10.13 05:45:30",
-      entrytime: "12.10.13 08:30:15",
-      exittime: "12.10.14 04:45:45",
-    },
-    {
-      number: 116,
-      id: "mjohnson3@gmail.com",
-      bettingusdp: 60000,
-      position: POSITION_LONG_KR,
-      ratio: 7,
-      roe: 10,
-      pnl: 600,
-      positiontime: "3시간 15분",
-      ownedtime: "4시간 10분",
-      maxroe: "36%/-16%",
-      submittime: "12.10.13 06:15:45",
-      entrytime: "12.10.13 09:00:30",
-      exittime: "12.10.14 04:15:20",
-    },
-    {
-      number: 117,
-      id: "rsmith3@gmail.com",
-      bettingusdp: 20000,
-      position: POSITION_LONG_KR,
-      ratio: 2,
-      roe: 5,
-      pnl: 100,
-      positiontime: "1시간 30분",
-      ownedtime: "2시간 10분",
-      maxroe: "11%/-6%",
-      submittime: "12.10.13 06:45:30",
-      entrytime: "12.10.13 09:30:15",
-      exittime: "12.10.14 03:45:45",
-    },
-    {
-      number: 118,
-      id: "jdoe4@gmail.com",
-      bettingusdp: 25000,
-      position: POSITION_LONG_KR,
-      ratio: 3,
-      roe: 6,
-      pnl: 150,
-      positiontime: "1시간 45분",
-      ownedtime: "2시간 20분",
-      maxroe: "9%/-4%",
-      submittime: "12.10.13 07:15:45",
-      entrytime: "12.10.13 10:00:30",
-      exittime: "12.10.14 03:15:20",
-    },
-    {
-      number: 119,
-      id: "17EA4@gmail.com",
-      bettingusdp: 30000,
-      position: POSITION_LONG_KR,
-      ratio: 4,
-      roe: 7,
-      pnl: 210,
-      positiontime: "2시간 10분",
-      ownedtime: "2시간 50분",
-      maxroe: "18%/-9%",
-      submittime: "12.10.13 07:45:30",
-      entrytime: "12.10.13 10:30:15",
-      exittime: "12.10.14 02:45:45",
-    },
-    {
-      number: 120,
-      id: "jwilliams4@gmail.com",
-      bettingusdp: 35000,
-      position: POSITION_LONG_KR,
-      ratio: 5,
-      roe: 8,
-      pnl: 280,
-      positiontime: "2시간 40분",
-      ownedtime: "3시간 15분",
-      maxroe: "27%/-12%",
-      submittime: "12.10.13 08:15:45",
-      entrytime: "12.10.13 11:00:30",
-      exittime: "12.10.14 02:15:20",
-    },
-  ];
+  interface selectState {
+    // 가져오려는 오브젝트의 이름이 Root 리듀서에서 설정한 이름과 같아야 함
+    dashboardUsdpInfo: {
+      dashboardUsdpInfos: DashboardUsdpInfo[];
+      loading: boolean;
+    };
+  }
+
+  const selectProperties = createSelector(
+    (state: selectState) => state.dashboardUsdpInfo,
+    (dashboard) => ({
+      DashboardUsdpInfos: dashboard.dashboardUsdpInfos,
+      loading: dashboard.loading,
+    })
+  );
+
+  const dispatch = useDispatch<any>();
+  const { DashboardUsdpInfos, loading } = useSelector(selectProperties);
+
+  useEffect(() => {
+    dispatch(getUsdpInfo());
+  }, []);
 
   return (
     <React.Fragment>
@@ -423,14 +96,18 @@ const DashboardUsdpRead = () => {
           <Breadcrumb title="Dashboards" breadcrumbItem="USDP" />
           <TableContainer
             columns={columns}
-            data={data || []}
+            data={DashboardUsdpInfos || []}
             isGlobalFilter={true}
             isPagination={true}
-            SearchPlaceholder={`${data.length} records...`}
+            SearchPlaceholder={`${
+              DashboardUsdpInfos ? DashboardUsdpInfos.length : 0
+            } records...`}
             pagination="pagination"
             paginationWrapper="dataTables_paginate paging_simple_numbers"
-            tableClass="table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
+            tableClass="dt-responsive nowrap w-100 dataTable no-footer dtr-inline table-hover"
+            theadClass="table-light"
             isCustomPageSize={true}
+            defaultSortingID="created_at"
           />
         </Container>
       </div>

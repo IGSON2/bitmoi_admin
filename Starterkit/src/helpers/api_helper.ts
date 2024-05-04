@@ -1,4 +1,8 @@
 import axios from "axios";
+import { POST_REISSUE_ACCESS } from "./url_helper";
+import { postReissueAccess } from "./backend_helper";
+import { AccessToken, RefreshToken } from "./localstorage_helper";
+import { AxiosResponse } from "axios";
 
 // default
 // axios.defaults.baseURL = "https://api.bitmoi.co.kr";
@@ -8,9 +12,9 @@ axios.interceptors.request.use(
   function (config: any) {
     config.headers["Content-Type"] = "application/json";
 
-    const authUser = localStorage.getItem("authUser");
-    if (authUser) {
-      config.headers["authorization"] = "Bearer " + authUser;
+    const accessToken = localStorage.getItem(AccessToken);
+    if (accessToken) {
+      config.headers["authorization"] = "Bearer " + accessToken;
     }
     return config;
   },
@@ -23,18 +27,32 @@ axios.interceptors.request.use(
 // intercepting to capture errors
 axios.interceptors.response.use(
   function (response: any) {
+    if (response.config.url === POST_REISSUE_ACCESS) {
+      localStorage.setItem(AccessToken, response.data.access_token);
+      window.location.reload();
+    }
     return response.data ? response.data : response;
   },
   function (error: any) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     let message: any;
-    switch (error.status) {
+    switch (error.response.status) {
+      case 400:
+        alert(error.response.data);
+        break;
       case 500:
         message = "Internal Server Error";
         break;
       case 401:
-        localStorage.removeItem("authUser");
-        message = "Invalid credentials";
+        if (error.config.url !== POST_REISSUE_ACCESS) {
+          const refreshToken = localStorage.getItem(RefreshToken);
+          postReissueAccess({ refresh_token: refreshToken });
+          break;
+        }
+        localStorage.removeItem(AccessToken);
+        localStorage.removeItem(RefreshToken);
+        window.location.href = "/login";
+        message = "Token is expired.";
         break;
       case 404:
         message = "Sorry! the data you are looking for could not be found";

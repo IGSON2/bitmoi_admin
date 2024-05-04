@@ -8,13 +8,12 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-} from "reactstrap"
+} from "reactstrap";
 
 //Import Breadcrumb
 import Breadcrumbs from "../../Components/Common/Breadcrumb";
 
 const BasicTable = () => {
-
   //meta title
   document.title = "Basic Tables | Skote - React Admin & Dashboard Template";
 
@@ -214,11 +213,12 @@ const BasicTable = () => {
               <Card>
                 <CardBody>
                   <CardTitle className="h4">Striped columns</CardTitle>
-                  <p className="card-title-desc">Use <code>.table-striped-columns</code>
-                    to add zebra-striping to any table column.</p>
+                  <p className="card-title-desc">
+                    Use <code>.table-striped-columns</code>
+                    to add zebra-striping to any table column.
+                  </p>
                   <div className="table-responsive">
                     <Table className="table table-striped-columns mb-0">
-
                       <thead>
                         <tr>
                           <th>#</th>
@@ -352,8 +352,10 @@ const BasicTable = () => {
               <Card>
                 <CardBody>
                   <h4 className="card-title">Table Border color</h4>
-                  <p className="card-title-desc">Add <code>.table-bordered</code> & <code>.border-*</code>
-                    for colored borders on all sides of the table and cells.</p>
+                  <p className="card-title-desc">
+                    Add <code>.table-bordered</code> & <code>.border-*</code>
+                    for colored borders on all sides of the table and cells.
+                  </p>
                   <div className="table-responsive">
                     <Table className="table table-bordered border-primary mb-0">
                       <thead>
@@ -394,7 +396,10 @@ const BasicTable = () => {
               <Card>
                 <CardBody>
                   <h4 className="card-title">Table Border color</h4>
-                  <p className="card-title-desc">Add <code>.table-bordered</code> & <code>.border-*</code> for colored borders on all sides of the table and cells.</p>
+                  <p className="card-title-desc">
+                    Add <code>.table-bordered</code> & <code>.border-*</code>{" "}
+                    for colored borders on all sides of the table and cells.
+                  </p>
 
                   <div className="table-responsive">
                     <Table className="table table-bordered border-success mb-0">
@@ -439,11 +444,15 @@ const BasicTable = () => {
                 <CardBody>
                   <div className="table-responsive">
                     <h4 className="card-title">Vertical alignment</h4>
-                    <p className="card-title-desc">Table cells in <code>&lt;tbody&gt;</code> inherit their alignment from <code>&lt;table&gt;</code> and are aligned to the the top by default. Use the vertical align classes to re-align where needed.</p>
+                    <p className="card-title-desc">
+                      Table cells in <code>&lt;tbody&gt;</code> inherit their
+                      alignment from <code>&lt;table&gt;</code> and are aligned
+                      to the the top by default. Use the vertical align classes
+                      to re-align where needed.
+                    </p>
 
                     <div className="table-responsive">
                       <Table className="align-middle mb-0">
-
                         <thead>
                           <tr>
                             <th>#</th>
@@ -458,7 +467,12 @@ const BasicTable = () => {
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>
-                              <button type="button" className="btn btn-light btn-sm">View</button>
+                              <button
+                                type="button"
+                                className="btn btn-light btn-sm"
+                              >
+                                View
+                              </button>
                             </td>
                           </tr>
                           <tr>
@@ -466,7 +480,12 @@ const BasicTable = () => {
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>
-                              <button type="button" className="btn btn-light btn-sm">View</button>
+                              <button
+                                type="button"
+                                className="btn btn-light btn-sm"
+                              >
+                                View
+                              </button>
                             </td>
                           </tr>
                           <tr>
@@ -474,7 +493,12 @@ const BasicTable = () => {
                             <td>Larry</td>
                             <td>the Bird</td>
                             <td>
-                              <button type="button" className="btn btn-light btn-sm">View</button>
+                              <button
+                                type="button"
+                                className="btn btn-light btn-sm"
+                              >
+                                View
+                              </button>
                             </td>
                           </tr>
                           <tr>
@@ -482,13 +506,17 @@ const BasicTable = () => {
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>
-                              <button type="button" className="btn btn-light btn-sm">View</button>
+                              <button
+                                type="button"
+                                className="btn btn-light btn-sm"
+                              >
+                                View
+                              </button>
                             </td>
                           </tr>
                         </tbody>
                       </Table>
                     </div>
-
                   </div>
                 </CardBody>
               </Card>
@@ -497,7 +525,11 @@ const BasicTable = () => {
               <Card>
                 <CardBody>
                   <h4 className="card-title">Nesting</h4>
-                  <p className="card-title-desc"> Border styles, active styles, and table variants are not inherited by nested tables.</p>
+                  <p className="card-title-desc">
+                    {" "}
+                    Border styles, active styles, and table variants are not
+                    inherited by nested tables.
+                  </p>
 
                   <div className="table-responsive">
                     <Table className="table-striped table-bordered mb-0">
@@ -550,7 +582,6 @@ const BasicTable = () => {
                       </tbody>
                     </Table>
                   </div>
-
                 </CardBody>
               </Card>
             </Col>
@@ -834,7 +865,7 @@ const BasicTable = () => {
         </div>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default BasicTable
+export default BasicTable;

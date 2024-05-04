@@ -18,7 +18,7 @@
        "@common/*": ["src/Components/Common/*"],
        "@assets/*": ["Components/assets/*"],
        "@shared/*": ["app/_shared/*"],
-       "@helpers/*": ["helpers/*"]
+       "@helpers/*": ["src/helpers/*"]
    },
     "moduleResolution": "node",
     "resolveJsonModule": true,
