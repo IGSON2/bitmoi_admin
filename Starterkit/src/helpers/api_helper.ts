@@ -2,11 +2,10 @@ import axios from "axios";
 import { POST_REISSUE_ACCESS } from "./url_helper";
 import { postReissueAccess } from "./backend_helper";
 import { AccessToken, RefreshToken } from "./localstorage_helper";
-import { AxiosResponse } from "axios";
 
 // default
-// axios.defaults.baseURL = "https://api.bitmoi.co.kr";
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://api.bitmoi.co.kr";
+// axios.defaults.baseURL = "http://localhost:5000";
 
 axios.interceptors.request.use(
   function (config: any) {
