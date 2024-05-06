@@ -4,8 +4,9 @@ import { postReissueAccess } from "./backend_helper";
 import { AccessToken, RefreshToken } from "./localstorage_helper";
 
 // default
-axios.defaults.baseURL = "https://api.bitmoi.co.kr";
+// axios.defaults.baseURL = "https://api.bitmoi.co.kr";
 // axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.request.use(
   function (config: any) {

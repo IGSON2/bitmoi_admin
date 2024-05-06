@@ -68,8 +68,8 @@ const DashboardScoresPrac = () => {
         enableSorting: true,
       },
       {
-        header: "경과 시간",
-        accessorKey: "ownedtime",
+        header: "주문 생성 시간",
+        accessorKey: "submittime",
         enableColumnFilter: false,
         enableSorting: true,
       },
@@ -80,20 +80,15 @@ const DashboardScoresPrac = () => {
         enableSorting: true,
       },
       {
-        header: "주문 생성 시간",
-        accessorKey: "submittime",
+        header: "종료 이후 정리 시간",
+        accessorKey: "afterexittime",
         enableColumnFilter: false,
         enableSorting: true,
       },
+
       {
         header: "비정상 종료 정산 시각",
         accessorKey: "settledat",
-        enableColumnFilter: false,
-        enableSorting: true,
-      },
-      {
-        header: "종료 이후 정리 시간",
-        accessorKey: "afterexittime",
         enableColumnFilter: false,
         enableSorting: true,
       },
